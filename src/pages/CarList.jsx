@@ -10,7 +10,7 @@ export default function CarList() {
   useEffect(() => {
     let carService = new CarService();
     carService.getDetails().then((result) => setCars(result.data.data));
-  });
+  }, []);
 
   return (
     <div>
