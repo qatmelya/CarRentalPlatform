@@ -1,7 +1,6 @@
 import React from 'react';
-import ProductList from '../pages/ProductList';
+import CarList from '../pages/CarList';
 import Categories from './Categories';
-import Navi from './Navi';
 import { Grid } from 'semantic-ui-react';
 
 export default function Dashboard() {
@@ -13,7 +12,7 @@ export default function Dashboard() {
             <Categories></Categories>
           </Grid.Column>
           <Grid.Column width={12}>
-            <ProductList></ProductList>
+            <CarList></CarList>
           </Grid.Column>
         </Grid.Row>
       </Grid>
