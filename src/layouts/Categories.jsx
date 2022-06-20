@@ -5,9 +5,10 @@ export default function Categories() {
   return (
     <div>
       <Menu pointing vertical>
-        <Menu.Item name="home" />
-        <Menu.Item name="messages" />
-        <Menu.Item name="friends" />
+        <Menu.Item name="Cars" />
+        <Menu.Item name="Brands" />
+        <Menu.Item name="Models" />
+        <Menu.Item name="Colors" />
       </Menu>
     </div>
   );

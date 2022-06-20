@@ -1,5 +1,5 @@
 import axios from 'axios';
-export default class ProductService {
+export default class CarService {
   add(car) {
     return axios.post('https://localhost:44301/api/cars/add');
   }
