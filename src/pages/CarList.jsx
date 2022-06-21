@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { Icon, Menu, Table } from 'semantic-ui-react';
 import CarService from '../services/carService';
 
@@ -18,25 +19,21 @@ export default function CarList() {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Car Name</Table.HeaderCell>
-            <Table.HeaderCell>Car Description</Table.HeaderCell>
             <Table.HeaderCell>Brand</Table.HeaderCell>
             <Table.HeaderCell>Model</Table.HeaderCell>
             <Table.HeaderCell>Color</Table.HeaderCell>
-            <Table.HeaderCell>Year</Table.HeaderCell>
-            <Table.HeaderCell>Daily Price</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
         <Table.Body>
           {cars.map((car) => (
             <Table.Row key={car.id}>
-              <Table.Cell>{car.name}</Table.Cell>
-              <Table.Cell>{car.description}</Table.Cell>
+              <Table.Cell>
+                <NavLink to={`/cardetail/${car.id}`}>{car.name}</NavLink>
+              </Table.Cell>
               <Table.Cell>{car.brandName}</Table.Cell>
               <Table.Cell>{car.modelName}</Table.Cell>
               <Table.Cell>{car.colorName}</Table.Cell>
-              <Table.Cell>{car.modelYear}</Table.Cell>
-              <Table.Cell>{car.dailyPrice}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
