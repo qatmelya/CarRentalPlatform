@@ -4,7 +4,7 @@ import useImage from './useImage';
 
 const dynamicImage = (filePath) => {
   let { loading, error, image } = useImage(filePath);
-  if (error || loading) return <>Hata</>;
+  if (error || loading) return <>Picture could not be loaded</>;
   return <Image size="medium" src={image} />;
 };
 

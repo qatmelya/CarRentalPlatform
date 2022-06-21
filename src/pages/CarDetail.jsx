@@ -14,21 +14,18 @@ export default function CarDetail() {
     carService.getById(id).then((result) => setCar(result.data.data));
   }, []);
   const [carImages, setCarImages] = useState([
+    { imagePath: 'assets/default.png' },
+  ]);
+  useEffect(() => {
+    let carImageService = new CarImageService();
+    carImageService
+      .getByCarId(id)
+      .then((result) => setCarImages(result.data.data));
+  }, [
     {
-      imagePath:
-        'repos/RentACarBackend/WebAPI/wwwroot/aa10c9cc-bd95-422c-9a19-0818044bc620.jfif',
+      imagePath: ' ',
     },
   ]);
-  // useEffect(() => {
-  //   let carImageService = new CarImageService();
-  //   carImageService
-  //     .getByCarId(id)
-  //     .then((result) => setCarImages(result.data.data));
-  // }, [
-  //   {
-  //     imagePath: ' ',
-  //   },
-  // ]);
 
   return (
     <div>
