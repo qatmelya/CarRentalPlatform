@@ -1,8 +1,15 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Card } from 'semantic-ui-react';
-import dynamicImage from '../hooks/dynamicImage';
+import {
+  Button,
+  Card,
+  Segment,
+  Loader,
+  Dimmer,
+  Image,
+} from 'semantic-ui-react';
+import loadImage from '../services/imageFromBackend';
 import CarImageService from '../services/carImageService';
 import CarService from '../services/carService';
 
@@ -13,26 +20,32 @@ export default function CarDetail() {
     let carService = new CarService();
     carService.getById(id).then((result) => setCar(result.data.data));
   }, []);
-  const [carImages, setCarImages] = useState([
-    { imagePath: 'assets/default.png' },
-  ]);
+  const [carImages, setCarImages] = useState([]);
   useEffect(() => {
     let carImageService = new CarImageService();
     carImageService
       .getByCarId(id)
       .then((result) => setCarImages(result.data.data));
-  }, [
-    {
-      imagePath: ' ',
-    },
-  ]);
+  }, []);
 
   return (
     <div>
       <Card.Group>
         <Card fluid>
           <Card.Content>
-            {dynamicImage(carImages[0].imagePath)}
+            {carImages.length > 0 ? (
+              carImages.map((carImage) =>
+                loadImage(carImage.imagePath, carImage.id)
+              )
+            ) : (
+              <Segment>
+                <Dimmer active inverted>
+                  <Loader inverted>Loading</Loader>
+                </Dimmer>
+
+                <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
+              </Segment>
+            )}
 
             <Card.Header>{car.name}</Card.Header>
             <Card.Meta>Rental Car</Card.Meta>
