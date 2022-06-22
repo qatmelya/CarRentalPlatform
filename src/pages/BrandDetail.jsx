@@ -1,14 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
+import BrandService from '../services/brandService';
+import ModelService from '../services/modelService';
 import { Icon, Menu, Table } from 'semantic-ui-react';
-import CarService from '../services/carService';
 
-export default function CarList() {
-  const [cars, setCars] = useState([]);
-
+export default function BrandDetail() {
+  let { id: brandId } = useParams();
+  const [models, setModels] = useState([]);
   useEffect(() => {
-    let carService = new CarService();
-    carService.getDetails().then((result) => setCars(result.data.data));
+    let modelService = new ModelService();
+    modelService
+      .getAllByBrandId(brandId)
+      .then((result) => setModels(result.data.data));
+  }, []);
+  const [brand, setBrand] = useState({});
+  useEffect(() => {
+    let brandService = new BrandService();
+    brandService.getById(brandId).then((result) => setBrand(result.data.data));
   }, []);
 
   return (
@@ -16,22 +24,16 @@ export default function CarList() {
       <Table celled>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Car Name</Table.HeaderCell>
-            <Table.HeaderCell>Brand</Table.HeaderCell>
-            <Table.HeaderCell>Model</Table.HeaderCell>
-            <Table.HeaderCell>Color</Table.HeaderCell>
+            <Table.HeaderCell>{brand.name}</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 
         <Table.Body>
-          {cars.map((car) => (
-            <Table.Row key={car.id}>
+          {models.map((model) => (
+            <Table.Row key={model.id}>
               <Table.Cell>
-                <NavLink to={`/cardetail/${car.id}`}>{car.name}</NavLink>
+                <NavLink to={`/modeldetail/${model.id}`}>{model.name}</NavLink>
               </Table.Cell>
-              <Table.Cell>{car.brandName}</Table.Cell>
-              <Table.Cell>{car.modelName}</Table.Cell>
-              <Table.Cell>{car.colorName}</Table.Cell>
             </Table.Row>
           ))}
         </Table.Body>
