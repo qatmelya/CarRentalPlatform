@@ -1,4 +1,4 @@
-const baseUrl = `https://localhost:44301`;
+const baseUrl = `redacted-frontend-url`;
 const carApi = baseUrl + `/api/cars`;
 const carImageApi = baseUrl + `/api/carImages`;
 const brandApi = baseUrl + `/api/brands`;
