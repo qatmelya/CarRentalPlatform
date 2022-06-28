@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button, Modal } from 'semantic-ui-react';
 import InputComponent from '../components/input';
 import BrandService from '../services/brandService';
-import delay from '../services/delay';
 
 export default function BrandAdd() {
   const [open, setOpen] = useState(false);
@@ -14,7 +13,6 @@ export default function BrandAdd() {
     if (typeof brandName === typeof '' && brandName.length >= 3) {
       let brandService = new BrandService();
       brandService.add(brandName);
-      delay(1000).then(window.location.reload(false));
     } else {
       //Show toast that inputtted value is not okay
     }
