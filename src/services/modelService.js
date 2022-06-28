@@ -7,4 +7,10 @@ export default class ModelService {
   getAllByBrandId(brandId) {
     return axios.get(`${modelApi}/getallbybrandid?brandid=${brandId}`);
   }
+  getAllModelDetails() {
+    return axios.get(`${modelApi}/getallmodeldetails`);
+  }
+  add(modelName, brandId) {
+    return axios.post(`${modelApi}/add`, { name: modelName, brandId: brandId });
+  }
 }
