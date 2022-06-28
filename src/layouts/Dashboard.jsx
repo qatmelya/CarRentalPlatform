@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom';
 import CartDetail from '../pages/CartDetail';
 import BrandList from '../pages/BrandList';
 import BrandDetail from '../pages/BrandDetail';
+import ModelList from '../pages/ModelList';
 
 export default function Dashboard() {
   return (
@@ -20,10 +21,16 @@ export default function Dashboard() {
             <Routes>
               <Route exact path="/" element={<CarList />} />
               <Route exact path="/cars" element={<CarList />} />
+              <Route
+                exact
+                path="/cars/:brandId/:modelId/:colorId"
+                element={<CarList />}
+              />
               <Route exact path="/cardetail/:id" element={<CarDetail />} />
               <Route exact path="/cart" element={<CartDetail />} />
               <Route exact path="/brands" element={<BrandList />} />
               <Route exact path="/branddetail/:id" element={<BrandDetail />} />
+              <Route exact path="/models" element={<ModelList />} />
             </Routes>
           </Grid.Column>
         </Grid.Row>

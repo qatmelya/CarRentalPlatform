@@ -1,19 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
 import { Icon, Menu, Table } from 'semantic-ui-react';
 import CarService from '../services/carService';
 
 export default function CarList() {
+  let { brandId, modelId, colorId } = useParams();
   const [cars, setCars] = useState([]);
-
+  let filterByBrand = (cars, brandId) =>
+    cars.filter((car) => car.brandId === parseInt(brandId));
+  let filterByModel = (cars, modelId) =>
+    cars.filter((car) => car.modelId === parseInt(modelId));
+  let filterByColor = (cars, colorId) =>
+    cars.filter((car) => car.colorId === parseInt(colorId));
   useEffect(() => {
     let carService = new CarService();
-    carService.getDetails().then((result) => setCars(result.data.data));
+    carService.getDetails().then((result) => {
+      let filteredResult = result.data.data;
+      if (brandId > 0) {
+        filteredResult = filterByBrand(filteredResult, brandId);
+      }
+      if (modelId > 0) {
+        filteredResult = filterByModel(filteredResult, modelId);
+      }
+      if (colorId > 0) {
+        filteredResult = filterByColor(filteredResult, colorId);
+      }
+      setCars(filteredResult);
+    });
   }, []);
 
   return (
     <div>
-      <Table celled>
+      <Table inverted celled>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Car Name</Table.HeaderCell>
@@ -38,8 +56,8 @@ export default function CarList() {
 
         <Table.Footer>
           <Table.Row>
-            <Table.HeaderCell colSpan="3">
-              <Menu floated="right" pagination>
+            <Table.HeaderCell colSpan="4">
+              <Menu inverted floated="right" pagination>
                 <Menu.Item as="a" icon>
                   <Icon name="chevron left" />
                 </Menu.Item>
