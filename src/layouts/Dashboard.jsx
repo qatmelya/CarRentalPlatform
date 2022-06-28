@@ -8,6 +8,7 @@ import CartDetail from '../pages/CartDetail';
 import BrandList from '../pages/BrandList';
 import BrandDetail from '../pages/BrandDetail';
 import ModelList from '../pages/ModelList';
+import ColorList from '../pages/ColorList';
 
 export default function Dashboard() {
   return (
@@ -31,6 +32,7 @@ export default function Dashboard() {
               <Route exact path="/brands" element={<BrandList />} />
               <Route exact path="/branddetail/:id" element={<BrandDetail />} />
               <Route exact path="/models" element={<ModelList />} />
+              <Route exact path="/colors" element={<ColorList />} />
             </Routes>
           </Grid.Column>
         </Grid.Row>
