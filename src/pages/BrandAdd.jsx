@@ -10,7 +10,6 @@ export default function BrandAdd() {
     setBrandName(e.target.value);
   };
   const addBrand = () => {
-    setBrandName(brandName);
     if (typeof brandName === typeof '' && brandName.length >= 3) {
       let brandService = new BrandService();
       brandService.add(brandName);
