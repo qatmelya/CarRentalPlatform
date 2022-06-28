@@ -37,13 +37,15 @@ export default function BrandList() {
               </Table.Row>
             ))
           ) : (
-            <Table.Cell>
-              <Placeholder fluid inverted>
-                <Placeholder.Line short />
-                <Placeholder.Line long />
-                <Placeholder.Line short />
-              </Placeholder>
-            </Table.Cell>
+            <Table.Row key={0}>
+              <Table.Cell>
+                <Placeholder fluid inverted>
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                </Placeholder>
+              </Table.Cell>
+            </Table.Row>
           )}
         </Table.Body>
 
