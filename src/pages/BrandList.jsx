@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import BrandService from '../services/brandService';
 import { Icon, Menu, Table } from 'semantic-ui-react';
+import BrandAdd from './BrandAdd';
+import '../styles/BrandList.css';
 
 export default function BrandList() {
   const [brands, setBrands] = useState([]);
@@ -14,7 +16,9 @@ export default function BrandList() {
       <Table celled>
         <Table.Header>
           <Table.Row>
-            <Table.HeaderCell>Brand Name</Table.HeaderCell>
+            <Table.HeaderCell className="headerCell">
+              Brand Name <BrandAdd></BrandAdd>
+            </Table.HeaderCell>
           </Table.Row>
         </Table.Header>
 

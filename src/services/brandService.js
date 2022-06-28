@@ -7,4 +7,7 @@ export default class BrandService {
   getById(id) {
     return axios.get(`${brandApi}/getbyid?id=${id}`);
   }
+  add(brandName) {
+    return axios.post(`${brandApi}/add`, { name: brandName });
+  }
 }
