@@ -21,7 +21,7 @@ export default function BrandDetail() {
 
   return (
     <div>
-      <Table celled>
+      <Table inverted celled>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>{brand.name}</Table.HeaderCell>
@@ -41,7 +41,7 @@ export default function BrandDetail() {
         <Table.Footer>
           <Table.Row>
             <Table.HeaderCell colSpan="3">
-              <Menu floated="right" pagination>
+              <Menu inverted floated="right" pagination>
                 <Menu.Item as="a" icon>
                   <Icon name="chevron left" />
                 </Menu.Item>

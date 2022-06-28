@@ -31,7 +31,7 @@ export default function CarDetail() {
   return (
     <div>
       <Card.Group>
-        <Card fluid>
+        <Card inverted fluid>
           <Card.Content>
             {carImages.length > 0 ? (
               carImages.map((carImage) =>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import BrandService from '../services/brandService';
-import { Icon, Menu, Table } from 'semantic-ui-react';
+import { Icon, Menu, Table, Placeholder } from 'semantic-ui-react';
 import BrandAdd from './BrandAdd';
-import '../styles/BrandList.css';
+import '../styles/Tables.css';
 
 export default function BrandList() {
   const [brands, setBrands] = useState([]);
@@ -13,7 +13,7 @@ export default function BrandList() {
   }, []);
   return (
     <div>
-      <Table celled>
+      <Table inverted celled>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell className="headerCell">
@@ -23,19 +23,34 @@ export default function BrandList() {
         </Table.Header>
 
         <Table.Body>
-          {brands.map((brand) => (
-            <Table.Row key={brand.id}>
-              <Table.Cell>
-                <NavLink to={`/brandDetail/${brand.id}`}>{brand.name}</NavLink>
-              </Table.Cell>
-            </Table.Row>
-          ))}
+          {brands.length > 0 ? (
+            brands.map((brand) => (
+              <Table.Row key={brand.id}>
+                <Table.Cell>
+                  <NavLink
+                    to={`/brandDetail/${brand.id}`}
+                    className="navLinkElement"
+                  >
+                    {brand.name}
+                  </NavLink>
+                </Table.Cell>
+              </Table.Row>
+            ))
+          ) : (
+            <Table.Cell>
+              <Placeholder fluid inverted>
+                <Placeholder.Line short />
+                <Placeholder.Line long />
+                <Placeholder.Line short />
+              </Placeholder>
+            </Table.Cell>
+          )}
         </Table.Body>
 
         <Table.Footer>
           <Table.Row>
             <Table.HeaderCell colSpan="3">
-              <Menu floated="right" pagination>
+              <Menu inverted floated="right" pagination>
                 <Menu.Item as="a" icon>
                   <Icon name="chevron left" />
                 </Menu.Item>
