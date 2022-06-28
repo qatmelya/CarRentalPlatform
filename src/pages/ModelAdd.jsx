@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Modal, FormField, Select } from 'semantic-ui-react';
 import InputComponent from '../components/input';
 import BrandService from '../services/brandService';
+import delay from '../services/delay';
 import ModelService from '../services/modelService';
 
 export default function ModelAdd() {
@@ -17,6 +18,7 @@ export default function ModelAdd() {
     ) {
       let modelService = new ModelService();
       modelService.add(modelName, selectedBrand.id);
+      delay(1000).then(window.location.reload(false));
     } else {
       //Show toast that inputtted value is not okay
     }
