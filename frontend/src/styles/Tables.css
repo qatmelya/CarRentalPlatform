@@ -1,0 +1,13 @@
+.headerCell {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navLinkElement {
+  text-decoration: none;
+  color: white;
+}
+.navLinkElement:hover {
+  color: white;
+  text-decoration: underline;
+}
